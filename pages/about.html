@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About shea | Our Story & Values</title>
+  <link rel="icon" type="image/png" href="../assets/images/brand-logo.png">
+  
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <style>
+    /* Hero Section */
+    .about-hero {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      padding: calc(100px + var(--space-4)) 0 var(--space-8);
+      text-align: center;
+    }
+
+    .about-hero h1 {
+      font-size: 4rem;
+      margin-bottom: var(--space-2);
+      letter-spacing: -0.02em;
+    }
+
+    .about-hero p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Timeline Section */
+    .timeline {
+      position: relative;
+      padding: 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: var(--space-6);
+      padding-left: var(--space-6);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -9px;
+      top: 8px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 3px solid var(--color-primary);
+      z-index: 10;
+      transition: all var(--transition-fast);
+    }
+
+    .timeline-item:hover::before {
+      width: 24px;
+      height: 24px;
+      left: -12px;
+      box-shadow: 0 0 0 6px rgba(74, 103, 65, 0.1);
+    }
+
+    .timeline-year {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-1);
+    }
+
+    .timeline-content {
+      background: var(--bg-surface);
+      padding: var(--space-3);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      transition: all var(--transition-normal);
+    }
+
+    .timeline-item:hover .timeline-content {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-primary);
+    }
+
+    /* Values Cards */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      margin: var(--space-6) 0;
+    }
+
+    .value-card {
+      background: var(--bg-surface);
+      padding: var(--space-5);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      text-align: center;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(74, 103, 65, 0.1), transparent);
+      transition: left var(--transition-normal);
+    }
+
+    .value-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .value-card:hover::before {
+      left: 100%;
+    }
+
+    .value-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-2);
+      color: var(--color-primary);
+    }
+
+    /* Founder Section */
+    .founder-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .founder-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .founder-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .founder-section:hover .founder-image img {
+      transform: scale(1.05);
+    }
+
+    .founder-quote {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin: var(--space-3) 0;
+      padding-left: var(--space-4);
+      border-left: 3px solid var(--color-primary);
+    }
+
+    /* Craftsmanship Grid */
+    .craftsmanship-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+
+    .craft-item {
+      background: rgba(255, 255, 255, 0.95);
+      padding: var(--space-5);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .craft-icon {
+      font-size: 2.5rem;
+    }
+
+    .craft-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    /* Ingredients Showcase */
+    .ingredient-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-4);
+      margin: var(--space-6) 0;
+    }
+
+    .ingredient-item {
+      background: var(--bg-surface);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      text-align: left;
+      border: 1px solid var(--color-border);
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      justify-content: flex-start;
+      align-items: flex-start;
+      height: 100%;
+    }
+
+    .ingredient-item h4 {
+      min-height: 3.5rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      margin-bottom: var(--space-2) !important;
+      line-height: 1.2;
+    }
+
+    .ingredient-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-primary);
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      main {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+      }
+
+      .founder-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .founder-image {
+        max-width: 400px;
+        margin: 0 auto var(--space-4) auto;
+      }
+
+      .founder-quote {
+        border-left: none;
+        padding-left: 0;
+      }
+
+      .values-grid,
+      .craftsmanship-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+      }
+
+      .craft-item {
+        padding: var(--space-4) var(--space-6);
+      }
+
+      .about-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .founder-section h2 {
+        font-size: 2.5rem;
+      }
+
+      .timeline {
+        padding-left: 20px;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-item {
+        padding-left: var(--space-4);
+      }
+
+      .timeline-item::before {
+        left: -9px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .founder-section {
+        text-align: left;
+      }
+
+      .founder-section h2 {
+        font-size: 2rem;
+      }
+
+      .founder-image {
+        max-width: 280px;
+      }
+
+      .founder-quote {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .about-hero h1 {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+      }
+      .timeline-item {
+        padding-left: var(--space-3);
+      }
+      .ingredient-item h4 {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body class="is-home">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/brand-logo.png" alt="shea Logo">
+        <span>shea</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="home-2.html" class="nav-link">Home 2</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="services.html" class="nav-link">Products</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="cart-booking.html" class="nav-link nav-cart-icon" aria-label="Cart" title="Cart"><i class="ph ph-shopping-cart"></i></a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL/LTR" title="Toggle RTL">
+          <i class="ph ph-translate"></i>
+        </button>
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="about-hero" data-aos="fade-up">
+      <div class="container">
+        <h1>The Origin of shea</h1>
+        <p>A philosophy of handmade skincare and natural wellness born out of reverence for the earth. Every product is a testament to purity, craft, and intentional beauty.</p>
+      </div>
+    </section>
+
+    <!-- Mission & Vision Cards -->
+    <section class="py-8" style="background-color: var(--bg-secondary);">
+      <div class="container">
+        <div class="grid grid-2 gap-4">
+          <div class="premium-card" style="padding: var(--space-5);" data-aos="fade-right">
+            <h3 style="color: var(--color-primary); margin-bottom: var(--space-2);">Our Mission</h3>
+            <p style="font-size: 1.05rem; line-height: 1.8;">To transform daily skincare routines into moments of pure, natural luxury while protecting our earth's resources. We believe in transparency over trends, and clean ingredients over complex formulations.</p>
+          </div>
+          <div class="premium-card" style="padding: var(--space-5);" data-aos="fade-left">
+            <h3 style="color: var(--color-primary); margin-bottom: var(--space-2);">Our Vision</h3>
+            <p style="font-size: 1.05rem; line-height: 1.8;">A world where the beauty industry works in perfect harmony with nature, leaving no trace behind but glowing, healthy skin and revitalized ecosystems. Beauty with a conscience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-8 container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2>Our Core Values</h2>
+        <p style="color: var(--text-secondary); font-size: 1.05rem;">The principles that guide every decision we make</p>
+      </div>
+      <div class="values-grid" data-aos="fade-up">
+        <div class="value-card">
+          <div class="value-icon"><i class="ph ph-check-circle" aria-hidden="true"></i></div>
+          <h4 style="margin-bottom: var(--space-2);">Authenticity</h4>
+          <p style="color: var(--text-secondary);">Real ingredients, real results. No marketing fluff or false promises.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="ph ph-leaf" aria-hidden="true"></i></div>
+          <h4 style="margin-bottom: var(--space-2);">Sustainability</h4>
+          <p style="color: var(--text-secondary);">Ethical sourcing and zero-waste production at the heart of everything we do.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="ph ph-sparkle" aria-hidden="true"></i></div>
+          <h4 style="margin-bottom: var(--space-2);">Quality</h4>
+          <p style="color: var(--text-secondary);">Handcrafted in small batches with obsessive attention to detail.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="py-8 container">
+      <div class="founder-section" data-aos="fade-up">
+        <div class="founder-image">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=800&h=1000" alt="Elena Rostova, Founder & Master Formulator">
+        </div>
+        <div>
+          <h2 style="font-size: 3rem; margin-bottom: var(--space-3);">Meet Elena</h2>
+          <p class="founder-quote">"I started shea in my kitchen, driven by a frustration with the complex, chemical-laden ingredients in mainstream beauty. I wanted to create a return to the botanical roots of skincare—to honor both nature and the human body."</p>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-top: var(--space-4);">With over 15 years of experience in botanical formulation and a background in organic chemistry, Elena has dedicated her life to creating skincare products that are as effective as they are pure.</p>
+          <p style="font-weight: 600; margin-top: var(--space-3);">Elena Rostova<br><span style="font-size: 0.9rem; color: var(--text-secondary);">Founder & Master Formulator</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Craftsmanship Section -->
+    <section class="py-8" style="background: var(--color-primary); color: white;">
+      <div class="container">
+        <div class="text-center mb-6" data-aos="fade-up">
+          <h2 style="color: white;">The Craft of shea</h2>
+          <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.05rem;">How we create products with intention and integrity</p>
+        </div>
+        <div class="craftsmanship-grid" data-aos="fade-up">
+          <div class="craft-item">
+            <div class="craft-icon" style="color: olivedrab;"><i class="ph ph-dna" aria-hidden="true"></i></div>
+            <div class="craft-title" style="color: black;">Handmade Process</div>
+            <p>Cold-pressed and hand-poured in small batches to preserve nutrient integrity and ensure superior quality.</p>
+          </div>
+          <div class="craft-item">
+            <div class="craft-icon" style="color: olivedrab;"><i class="ph ph-leaf" aria-hidden="true"></i></div>
+            <div class="craft-title"style="color: black;">Natural Sourcing</div>
+            <p>We forage locally and partner exclusively with certified sustainable organic farms worldwide.</p>
+          </div>
+          <div class="craft-item">
+            <div class="craft-icon" style="color: olivedrab;"><i class="ph ph-recycle" aria-hidden="true"></i></div>
+            <div class="craft-title" style="color: black;">Ethical Production</div>
+            <p>Zero-waste facility running entirely on renewable energy with fair-trade partner networks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-8 container">
+      <div class="text-center mb-6" data-aos="fade-up">
+        <h2>Our Journey</h2>
+        <p style="color: var(--text-secondary); font-size: 1.05rem;">Milestones in our commitment to botanical luxury</p>
+      </div>
+      <div style="max-width: 700px; margin: 0 auto;">
+        <div class="timeline">
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="0">
+            <div class="timeline-year">2018</div>
+            <div class="timeline-content">
+              <p style="font-weight: 600; margin-bottom: 4px;">The First Creation</p>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">Elena creates the first lavender soap in her kitchen, sparking an idea.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="timeline-year">2020</div>
+            <div class="timeline-content">
+              <p style="font-weight: 600; margin-bottom: 4px;">Official Launch</p>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">shea launches its online botanical boutique with a curated collection.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-content">
+              <p style="font-weight: 600; margin-bottom: 4px;">Sustainability Milestone</p>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">Transition to 100% sustainable, glass, and paper packaging.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-content">
+              <p style="font-weight: 600; margin-bottom: 4px;">Global Community</p>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">A thriving global community of 5,000+ devoted to slow beauty and quiet luxury.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Ingredients Section -->
+    <section class="py-8" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="text-center mb-6" data-aos="fade-up">
+          <h2>Our Star Ingredients</h2>
+          <p style="color: var(--text-secondary); font-size: 1.05rem;">Botanicals that power every formula</p>
+        </div>
+        <div class="ingredient-grid" data-aos="fade-up">
+          <div class="ingredient-item">
+            <h4 style="color: var(--color-primary);">Hyaluronic Acid</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">From botanical sources for maximum hydration</p>
+          </div>
+          <div class="ingredient-item">
+            <h4 style="color: var(--color-primary);">Retinol</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">Plant-derived for gentle anti-aging</p>
+          </div>
+          <div class="ingredient-item">
+            <h4 style="color: var(--color-primary);">Niacinamide</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">Supports skin barrier and reduces sensitivity</p>
+          </div>
+          <div class="ingredient-item">
+            <h4 style="color: var(--color-primary);">Vitamin C</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">Natural brightness and antioxidant protection</p>
+          </div>
+          <div class="ingredient-item">
+            <h4 style="color: var(--color-primary);">Ceramides</h4>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">Strengthens and protects the skin barrier</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-8 container text-center">
+      <h2 style="margin-bottom: var(--space-3);">Experience the shea Difference</h2>
+      <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-5) auto;">Discover our carefully crafted collection of botanical skincare products designed to transform your daily routine into a ritual of luxury and intention.</p>
+      <a href="services.html" class="btn btn-primary" style="padding: 14px 36px; font-weight: 600;">Explore Products</a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="../index.html" class="logo">
+            <img src="../assets/images/brand-logo.png" alt="shea Logo">
+            <span>shea</span>
+          </a>
+          <p class="mt-3">The quiet luxury of botanical skincare. Handcrafted with intention and respect for nature.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="about.html">Our Story</a>
+            <a href="services.html">Shop All</a>
+            <a href="blog.html">The Journal</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-links">
+            <a href="#"><i class="ph ph-instagram-logo"></i> Instagram</a>
+            <a href="#"><i class="ph ph-facebook-logo"></i> Facebook</a>
+            <a href="#"><i class="ph ph-pinterest-logo"></i> Pinterest</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 shea Skincare. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

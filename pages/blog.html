@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal | shea</title>
+  <link rel="icon" type="image/png" href="../assets/images/brand-logo.png">
+  <meta name="description" content="Read shea's botanical insights, skincare rituals, and mindful beauty stories.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    .blog-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: var(--space-5);
+    }
+    @media (max-width: 768px) {
+      .blog-layout {
+        grid-template-columns: 1fr;
+      }
+      .blog-layout .blog-sidebar {
+        order: -1;
+      }
+      .blog-layout .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 360px) {
+      .blog-layout {
+        gap: var(--space-3);
+      }
+      .blog-search {
+        max-width: 100% !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/brand-logo.png" alt="shea Logo">
+        <span>shea</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="home-2.html" class="nav-link">Home 2</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Products</a>
+        <a href="blog.html" class="nav-link active">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="cart-booking.html" class="nav-link nav-cart-icon" aria-label="Cart" title="Cart"><i class="ph ph-shopping-cart"></i></a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL/LTR" title="Toggle RTL">
+          <i class="ph ph-translate"></i>
+        </button>
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="py-8 container text-center">
+      <span class="badge badge-primary">Journal</span>
+      <h1 class="mt-3">Stories from the shea Ritual</h1>
+      <p class="mt-2" style="max-width: 640px; margin: 0 auto; color: var(--text-secondary);">Learn about botanical ingredients, soothing rituals, and the quiet luxury of mindful skincare.</p>
+      <div class="mt-4" style="max-width: 560px; margin: 0 auto;">
+        <input type="text" class="form-control" placeholder="Search articles, rituals, and stories">
+      </div>
+    </section>
+
+    <section class="py-5 container blog-layout" style="max-width: 1180px; margin: 0 auto;">
+      <div class="blog-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4);">
+        <article class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80" class="card-img" alt="Blog Post">
+          </div>
+          <div class="card-content">
+            <span class="badge badge-primary">Ingredients</span>
+            <h3 class="mt-2">The Power of French Green Clay</h3>
+            <p>Why this ingredient is a game changer for oily and combination skin types.</p>
+            <a href="blog-details.html" class="btn btn-secondary mt-2">Read More</a>
+          </div>
+        </article>
+
+        <article class="card" data-aos="fade-up" data-aos-delay="150">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=600&h=450" class="card-img" alt="Blog Post">
+          </div>
+          <div class="card-content">
+            <span class="badge badge-primary">Tutorials</span>
+            <h3 class="mt-2">How to Build a Nighttime Routine</h3>
+            <p>A step-by-step guide to locking in moisture while you sleep.</p>
+            <a href="blog2.html" class="btn btn-secondary mt-2">Read More</a>
+          </div>
+        </article>
+
+        <article class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=600&h=450" class="card-img" alt="Blog Post">
+          </div>
+          <div class="card-content">
+            <span class="badge badge-primary">Wellness</span>
+            <h3 class="mt-2">Mindful Skin Care for Modern Living</h3>
+            <p>Simple rituals that help your skin recover from the day.</p>
+            <a href="blog3.html" class="btn btn-secondary mt-2">Read More</a>
+          </div>
+        </article>
+
+        <article class="card" data-aos="fade-up" data-aos-delay="250">
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1200&q=80" class="card-img" alt="Blog Post">
+          </div>
+          <div class="card-content">
+            <span class="badge badge-primary">Design</span>
+            <h3 class="mt-2">Sustainable Packaging in Botanical Beauty</h3>
+            <p>How thoughtful materials create a quiet luxury experience.</p>
+            <a href="blog4.html" class="btn btn-secondary mt-2">Read More</a>
+          </div>
+        </article>
+      </div>
+
+      <aside class="glass-card blog-sidebar" style="padding: var(--space-5);" data-aos="fade-left">
+        <h2>Featured Insight</h2>
+        <p class="mt-3" style="color: var(--text-secondary);">Explore the rituals and botanical ingredients that shape our mindful approach to skincare.</p>
+        <div class="mt-5">
+          <h4>Categories</h4>
+          <div class="footer-links" style="margin-top: var(--space-3);">
+            <a href="#">Ritual Guides</a>
+            <a href="#">Ingredient Spotlights</a>
+            <a href="#">Sustainability</a>
+            <a href="#">Skin Wisdom</a>
+          </div>
+        </div>
+        <div class="mt-5">
+          <h4>Recent Notes</h4>
+          <ul style="margin-top: var(--space-3); list-style: none; padding: 0; color: var(--text-secondary);">
+            <li style="margin-bottom: var(--space-2);"><a href="blog-details.html">Why Less is Always More in Your Ritual</a></li>
+            <li style="margin-bottom: var(--space-2);"><a href="blog-details.html">A Gentle Cleanse to Start the Day</a></li>
+            <li><a href="blog-details.html">Gift the Experience of Calm Skin</a></li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <section class="py-8 container" style="max-width: 1180px; margin: 0 auto;">
+      <div class="glass-card" data-aos="fade-up">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap;">
+          <div>
+            <h2>More to Explore</h2>
+            <p class="mt-2" style="color: var(--text-secondary);">Seasonal rituals and ingredient stories for every skin moment.</p>
+          </div>
+          <a href="contact.html" class="btn btn-primary">Ask Our Editorial Team</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="../index.html" class="logo">
+            <img src="../assets/images/brand-logo.png" alt="shea Logo">
+            <span>shea</span>
+          </a>
+          <p class="mt-3">The quiet luxury of botanical skincare. Handcrafted with intention and respect for nature.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="about.html">Our Story</a>
+            <a href="services.html">Shop All</a>
+            <a href="blog.html">The Journal</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-links">
+            <a href="#"><i class="ph ph-instagram-logo"></i> Instagram</a>
+            <a href="#"><i class="ph ph-facebook-logo"></i> Facebook</a>
+            <a href="#"><i class="ph ph-pinterest-logo"></i> Pinterest</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 shea Skincare. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/components.js"></script>
+</body>
+</html>

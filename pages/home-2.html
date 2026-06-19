@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shea | Home 2 - Botanical Mastery</title>
+
+  <link rel="icon" type="image/png" href="../assets/images/brand-logo.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* ===========================
+       Home 2 - Responsive Styles
+       =========================== */
+
+    /* --- Hero Section --- */
+    .fullscreen-hero {
+      position: relative;
+      min-height: 100vh;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      color: white;
+      margin-top: 0;
+      padding-top: calc(var(--header-comp) + var(--space-4));
+      box-sizing: border-box;
+    }
+
+    .fullscreen-hero video,
+    .fullscreen-hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .fullscreen-hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+      backdrop-filter: blur(1px);
+    }
+
+    .fullscreen-hero-content {
+      z-index: 10;
+      max-width: 900px;
+      animation: slideUp 0.8s ease;
+      padding: 0 var(--space-3);
+    }
+
+    .fullscreen-hero h1 {
+      font-size: 5.5rem;
+      font-family: var(--font-heading);
+      color: white;
+      line-height: 1.1;
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+
+    .fullscreen-hero-subtitle {
+      font-size: 1.35rem;
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto var(--space-4) auto;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 0.5px;
+    }
+
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+    }
+
+    .hero-cta .btn {
+      padding: 14px 36px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    /* --- Gallery Grid --- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: minmax(200px, auto);
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
+    }
+
+    .gallery-item-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--bg-secondary);
+      aspect-ratio: 4 / 3;
+    }
+
+    .gallery-item-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.33, 0.66, 0.66, 1);
+      cursor: pointer;
+      display: block;
+    }
+
+    .gallery-item-wrapper:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-large {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: 8 / 3;
+    }
+
+    /* --- Featured Collections Carousel --- */
+    .carousel-wrapper {
+      padding: var(--space-6) 0;
+      background: linear-gradient(180deg, rgba(244, 241, 233, 0.5) 0%, rgba(253, 252, 248, 1) 100%);
+    }
+
+    [data-theme="dark"] .carousel-wrapper {
+      background: linear-gradient(180deg, rgba(35, 38, 34, 0.5) 0%, rgba(26, 28, 25, 1) 100%);
+    }
+
+    .carousel-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+
+    .carousel-item {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-normal);
+      background: var(--bg-surface);
+      border: 1px solid var(--color-border);
+      padding: var(--space-1);
+    }
+
+    .carousel-item.hidden {
+      display: none !important;
+    }
+
+    .carousel-item:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .carousel-item img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .carousel-item .card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-3);
+    }
+
+    .carousel-item .card-content .collection-badge {
+      align-self: flex-start;
+      margin-bottom: var(--space-2);
+    }
+
+    .carousel-item .card-content h4 {
+      font-family: var(--font-body);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--space-1);
+    }
+
+    .carousel-item .card-content p {
+      color: var(--text-secondary);
+      margin-bottom: var(--space-2);
+    }
+
+    .carousel-item .card-content .price-row {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-2);
+    }
+
+    .carousel-item .card-content .price-row .price {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--color-primary);
+      margin: 0;
+    }
+
+    .carousel-item .card-content .price-row .icon-btn {
+      background: var(--color-primary);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s;
+    }
+
+    .carousel-item .card-content .price-row .icon-btn:hover {
+      transform: scale(1.1);
+      background: var(--color-primary);
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3);
+    }
+
+    .carousel-controls .icon-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: white;
+      font-size: 1.5rem;
+      transition: all var(--transition-normal);
+    }
+
+    .carousel-controls .icon-btn:hover {
+      background: var(--color-primary-hover);
+      transform: scale(1.1);
+    }
+
+    .carousel-controls .icon-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* --- Collection Badge --- */
+    .collection-badge {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--space-2);
+    }
+
+    /* --- Editorial Sections --- */
+    .editorial-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      align-items: center;
+      margin-bottom: var(--space-8);
+    }
+
+    .editorial-section:nth-child(even) {
+      direction: rtl;
+    }
+
+    .editorial-section:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .editorial-content {
+      padding-left: var(--space-3);
+    }
+
+    .editorial-content h2 {
+      font-size: 2.8rem;
+      margin-bottom: var(--space-3);
+      line-height: 1.2;
+    }
+
+    .editorial-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-3);
+    }
+
+    .editorial-image {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .editorial-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .editorial-section:hover .editorial-image img {
+      transform: scale(1.05);
+    }
+
+    /* --- Stats Section --- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      margin: var(--space-6) 0;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: var(--space-4);
+      background: var(--bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-normal);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-1);
+    }
+
+    /* ============================================
+       RESPONSIVE BREAKPOINTS
+       ============================================ */
+
+    /* --- 1024px: Tablet landscape --- */
+    @media (max-width: 1024px) {
+      .fullscreen-hero h1 {
+        font-size: 4.5rem;
+      }
+
+      .fullscreen-hero-subtitle {
+        font-size: 1.25rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+
+      .gallery-item-wrapper {
+        aspect-ratio: 1 / 1;
+      }
+
+      .gallery-large {
+        grid-column: span 2;
+        grid-row: span 1;
+        aspect-ratio: 2 / 1;
+      }
+
+      .editorial-content h2 {
+        font-size: 2.4rem;
+      }
+    }
+
+    /* --- 992px: Small tablet --- */
+    @media (max-width: 992px) {
+      .fullscreen-hero h1 {
+        font-size: 4rem;
+      }
+
+      .fullscreen-hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .carousel-wrapper {
+        padding: var(--space-4) 0;
+      }
+
+      .carousel-container {
+        grid-template-columns: 1fr;
+      }
+
+      .carousel-item img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .editorial-section {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+        margin-bottom: var(--space-6);
+      }
+
+      .editorial-section:nth-child(even) {
+        direction: ltr;
+      }
+
+      .editorial-content h2 {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* --- 768px: Mobile landscape --- */
+    @media (max-width: 768px) {
+      .fullscreen-hero {
+        min-height: 80vh;
+      }
+
+      .fullscreen-hero h1 {
+        font-size: 3rem;
+      }
+
+      .fullscreen-hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .hero-cta {
+        gap: var(--space-2);
+        margin-top: var(--space-4);
+      }
+
+      .hero-cta .btn {
+        padding: 12px 28px;
+        font-size: 0.9rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .gallery-large {
+        grid-column: span 1;
+        aspect-ratio: 16 / 9;
+      }
+
+      .gallery-item-wrapper {
+        aspect-ratio: 16 / 9;
+      }
+
+      .carousel-container {
+        grid-template-columns: 1fr;
+      }
+
+      .carousel-item {
+        min-width: 0;
+      }
+
+      .carousel-item img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .editorial-section {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+        margin-bottom: 0;
+      }
+
+      .editorial-section:nth-child(even) {
+        direction: ltr;
+      }
+
+      .editorial-content h2 {
+        font-size: 2rem;
+      }
+
+      .editorial-content p {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .stat-number {
+        font-size: 2.2rem;
+      }
+
+      .stat-card {
+        padding: var(--space-3);
+      }
+    }
+
+    /* --- 540px: Mobile portrait --- */
+    @media (max-width: 540px) {
+      .fullscreen-hero h1 {
+        font-size: 2.6rem;
+      }
+
+      .carousel-item {
+        min-width: 0;
+      }
+
+      .carousel-item img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .editorial-content h2 {
+        font-size: 1.75rem;
+      }
+
+      .editorial-content p {
+        font-size: 0.95rem;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+    }
+
+    /* --- 480px: Small mobile --- */
+    @media (max-width: 480px) {
+      .fullscreen-hero {
+        min-height: 75vh;
+      }
+
+      .fullscreen-hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .fullscreen-hero-subtitle {
+        font-size: 1rem;
+        padding: 0 var(--space-2);
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 var(--space-3);
+      }
+
+      .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .carousel-item {
+        min-width: 0;
+      }
+
+      .carousel-item img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .editorial-content h2 {
+        font-size: 1.5rem;
+      }
+
+      .stat-number {
+        font-size: 1.75rem;
+      }
+
+      .stat-card {
+        padding: var(--space-2);
+      }
+    }
+
+    /* --- 360px: Extra small mobile --- */
+    @media (max-width: 360px) {
+      .fullscreen-hero-content {
+        padding: 0 var(--space-2);
+      }
+
+      .fullscreen-hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="is-home">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/brand-logo.png" alt="shea Logo">
+        <span>shea</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="home-2.html" class="nav-link active">Home 2</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Products</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="cart-booking.html" class="nav-link nav-cart-icon" aria-label="Cart" title="Cart"><i class="ph ph-shopping-cart"></i></a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL/LTR" title="Toggle RTL">
+          <i class="ph ph-translate"></i>
+        </button>
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Fullscreen Hero Section -->
+    <section class="fullscreen-hero">
+      <img src="https://images.unsplash.com/photo-1655026392641-bf283a5f12d4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNraW4lMjBjYXJlJTIwc2VydW1zfGVufDB8fDB8fHww"
+        alt="Botanical Background">
+      <div class="fullscreen-hero-content">
+        <h1>Botanical Mastery</h1>
+        <p class="fullscreen-hero-subtitle">Unveiling the purest elements of nature, crafted with intention.</p>
+        <div class="hero-cta">
+          <a href="services.html" class="btn btn-primary">Explore Products</a>
+          <a href="about.html" class="btn btn-secondary" style="color: white; border-color: white;">Our Story</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Section 1: Philosophy -->
+    <section class="py-8 container">
+      <div class="editorial-section">
+        <div class="editorial-content">
+          <h2>The Philosophy of Less</h2>
+          <p>Our luxury skincare line is born from the belief that nature provides everything we need. We strip away the
+            unnecessary, leaving only potent, ethically sourced ingredients that truly serve your skin. It is an
+            editorial approach to formulation—every ingredient must earn its place.</p>
+          <p>Each product is a testament to the principle of purity: no fillers, no fluff, no compromise. Just the
+            botanical essence that transforms daily routines into ritualistic moments of self-care.</p>
+          <a href="about.html" class="btn btn-primary" style="margin-top: var(--space-3);">Learn More</a>
+        </div>
+        <div class="editorial-image">
+          <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=80"
+            alt="Philosophy of Less">
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Collections Carousel -->
+    <section class="carousel-wrapper">
+      <div class="container mb-4">
+        <div class="text-center">
+          <h2 style="margin-bottom: var(--space-1);">Curated Collections</h2>
+          <p style="font-family: var(--font-heading); color: var(--text-secondary);">Handpicked rituals for your skin's needs</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="carousel-container" id="collectionsCarousel">
+        <!-- Collection 1 -->
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1749599018738-b8fb6c4a83e0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8VGhlJTIwSHlkcmF0aW9uJTIwS2l0fGVufDB8fDB8fHww"
+            alt="The Hydration Kit">
+          <div class="card-content">
+            <span class="collection-badge">Bestseller</span>
+            <h4>The Hydration Kit</h4>
+            <p>Moisturizing serum + Rich facial cream</p>
+            <div class="price-row">
+              <span class="price">$85.00</span>
+              <button class="icon-btn" data-add-to-cart="true" data-product="The Hydration Kit" data-price="85.00" aria-label="Add to Cart">
+                <i class="ph ph-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collection 2 -->
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1723951174326-2a97221d3b7f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Vml0YW1pbiUyMEMlMjBzZXJ1bSUyMCUyQiUyMEJyaWdodGVuaW5nJTIwbWFza3xlbnwwfHwwfHx8MA%3D%3D"
+            alt="Brightening Duo">
+          <div class="card-content">
+            <span class="collection-badge">New</span>
+            <h4>Brightening Duo</h4>
+            <p>Vitamin C serum + Brightening mask</p>
+            <div class="price-row">
+              <span class="price">$60.00</span>
+              <button class="icon-btn" data-add-to-cart="true" data-product="Brightening Duo" data-price="60.00" aria-label="Add to Cart">
+                <i class="ph ph-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collection 3 -->
+        <div class="carousel-item">
+          <img src="https://plus.unsplash.com/premium_photo-1679431125035-311bd62c2b12?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q2hhbW9taWxlJTIwb2lsJTIwJTJCJTIwU2Vuc2l0aXZlJTIwc2tpbiUyMGJhbG18ZW58MHx8MHx8fDA%3D"
+            alt="Calming Essentials">
+          <div class="card-content">
+            <span class="collection-badge">Popular</span>
+            <h4>Calming Essentials</h4>
+            <p>Chamomile oil + Sensitive skin balm</p>
+            <div class="price-row">
+              <span class="price">$75.00</span>
+              <button class="icon-btn" data-add-to-cart="true" data-product="Calming Essentials" data-price="75.00" aria-label="Add to Cart">
+                <i class="ph ph-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collection 4 -->
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1768254636839-9a2d2619c861?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8UmV0aW5vbCUyMHNlcnVtJTIwJTJCJTIwRXllJTIwY29udG91ciUyMGNyZWFtfGVufDB8fDB8fHww"
+            alt="Anti-Aging Ritual">
+          <div class="card-content">
+            <span class="collection-badge">Premium</span>
+            <h4>Anti-Aging Ritual</h4>
+            <p>Retinol serum + Eye contour cream</p>
+            <div class="price-row">
+              <span class="price">$95.00</span>
+              <button class="icon-btn" data-add-to-cart="true" data-product="Anti-Aging Ritual" data-price="95.00" aria-label="Add to Cart">
+                <i class="ph ph-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="text-center mt-5 carousel-controls">
+          <button class="icon-btn carousel-prev" aria-label="Previous"><i class="ph ph-caret-left" aria-hidden="true"></i></button>
+          <button class="icon-btn carousel-next" aria-label="Next"><i class="ph ph-caret-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Section 2: Craftsmanship -->
+    <section class="py-8 container">
+      <div class="editorial-section">
+        <div class="editorial-image">
+          <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=600&h=800"
+            alt="Craftsmanship">
+        </div>
+        <div class="editorial-content">
+          <h2>Handcrafted with Purpose</h2>
+          <p>Every bottle represents hours of meticulous formulation and testing. Our Master Formulator, Elena, sources
+            ingredients from sustainable suppliers worldwide—ensuring not only efficacy but also ethical integrity.</p>
+          <p>Cold-pressed, hand-poured, and packaged with intention. This is not mass production; this is artisanal
+            craft at its finest. Each batch carries the mark of excellence.</p>
+          <a href="about.html" class="btn btn-primary" style="margin-top: var(--space-3);">Meet Our Team</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Large Image Gallery -->
+    <section class="py-8 container">
+      <div class="text-center mb-5">
+        <h2>The shea Aesthetic</h2>
+        <p style="font-family: var(--font-heading); color: var(--text-secondary);">A visual journey through our botanical world</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item-wrapper">
+          <img src="https://images.unsplash.com/photo-1629380108660-bd39c778a721?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGZhY2UlMjBjcmVhbXxlbnwwfHwwfHx8MA%3D%3D"
+            alt="Gallery 1">
+        </div>
+        <div class="gallery-item-wrapper">
+          <img src="https://images.unsplash.com/photo-1585652757141-8837d676fac8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHNraW4lMjBjYXJlJTIwc2VydW1zfGVufDB8fDB8fHww"
+            alt="Gallery 2">
+        </div>
+        <div class="gallery-item-wrapper">
+          <img src="https://images.unsplash.com/photo-1582103645388-b85304592cb0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjJ8fHNraW4lMjBjYXJlJTIwc2VydW1zfGVufDB8fDB8fHww"
+            alt="Gallery 3">
+        </div>
+        <div class="gallery-item-wrapper">
+          <img src="https://images.unsplash.com/photo-1552046122-03184de85e08?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGZhY2UlMjBjcmVhbXxlbnwwfHwwfHx8MA%3D%3D"
+            alt="Gallery 4">
+        </div>
+        <div class="gallery-item-wrapper">
+          <img src="https://images.unsplash.com/photo-1606424359367-af69e3da9832?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGZhY2UlMjBjcmVhbXxlbnwwfHwwfHx8MA%3D%3D"
+            alt="Gallery 5">
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Proof / Stats Section -->
+    <section class="py-8" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2>Why Choose shea</h2>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">5K+</div>
+            <p style="font-weight: 600;">Happy Customers</p>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Worldwide community</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <p style="font-weight: 600;">Natural Ingredients</p>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">No synthetic fillers</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <p style="font-weight: 600;">Years Experience</p>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">In botanical formulation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="../index.html" class="logo">
+            <img src="../assets/images/brand-logo.png" alt="shea Logo">
+            <span>shea</span>
+          </a>
+          <p class="mt-3">The quiet luxury of botanical skincare. Handcrafted with intention and respect for nature.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="about.html">Our Story</a>
+            <a href="services.html">Shop All</a>
+            <a href="blog.html">The Journal</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-links">
+            <a href="#"><i class="ph ph-instagram-logo"></i> Instagram</a>
+            <a href="#"><i class="ph ph-facebook-logo"></i> Facebook</a>
+            <a href="#"><i class="ph ph-pinterest-logo"></i> Pinterest</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 shea Skincare. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/components.js"></script>
+
+  <script>
+    // Ensure proper header styling on Home 2
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('.header');
+      const updateHeaderStyle = () => {
+        const navLinks = header.querySelectorAll('.nav-link');
+        const logo = header.querySelector('.logo');
+        const buttons = header.querySelectorAll('.icon-btn');
+
+        if (window.scrollY > 50) {
+          navLinks.forEach(link => link.style.color = '');
+          logo.style.color = '';
+          buttons.forEach(btn => btn.style.color = '');
+        } else {
+          navLinks.forEach(link => link.style.color = 'white');
+          logo.style.color = 'white';
+          buttons.forEach(btn => btn.style.color = 'white');
+        }
+      };
+
+      window.addEventListener('scroll', updateHeaderStyle);
+      updateHeaderStyle();
+
+      // Paginated Grid logic
+      const carousel = document.getElementById('collectionsCarousel');
+      const prevBtn = document.querySelector('.carousel-prev');
+      const nextBtn = document.querySelector('.carousel-next');
+
+      if (carousel && prevBtn && nextBtn) {
+        const items = Array.from(carousel.querySelectorAll('.carousel-item'));
+        let currentPage = 0;
+
+        const updatePagination = () => {
+          const itemsPerPage = window.innerWidth <= 768 ? 1 : 2;
+          const totalPages = Math.ceil(items.length / itemsPerPage);
+          
+          if (currentPage >= totalPages) currentPage = totalPages - 1;
+          if (currentPage < 0) currentPage = 0;
+
+          items.forEach((item, index) => {
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            if (index >= start && index < end) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+
+          prevBtn.disabled = currentPage === 0;
+          nextBtn.disabled = currentPage === totalPages - 1;
+          
+          prevBtn.style.opacity = prevBtn.disabled ? '0.3' : '1';
+          prevBtn.style.cursor = prevBtn.disabled ? 'not-allowed' : 'pointer';
+          nextBtn.style.opacity = nextBtn.disabled ? '0.3' : '1';
+          nextBtn.style.cursor = nextBtn.disabled ? 'not-allowed' : 'pointer';
+        };
+
+        prevBtn.addEventListener('click', () => {
+          if (currentPage > 0) {
+            currentPage--;
+            updatePagination();
+          }
+        });
+
+        nextBtn.addEventListener('click', () => {
+          const itemsPerPage = window.innerWidth <= 768 ? 1 : 2;
+          const totalPages = Math.ceil(items.length / itemsPerPage);
+          if (currentPage < totalPages - 1) {
+            currentPage++;
+            updatePagination();
+          }
+        });
+
+        window.addEventListener('resize', updatePagination);
+        updatePagination();
+      }
+    });
+  </script>
+</body>
+
+</html>

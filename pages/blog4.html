@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evening Rituals | shea Journal</title>
+  <link rel="icon" type="image/png" href="../assets/images/brand-logo.png">
+  <meta name="description" content="Explore a mindful evening skincare ritual built on botanical calm, glow, and restorative texture.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    .blog-detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: var(--space-5);
+    }
+    @media (max-width: 768px) {
+      .blog-detail-layout {
+        grid-template-columns: 1fr;
+      }
+      .blog-detail-layout .blog-sidebar {
+        order: -1;
+      }
+    }
+    @media (max-width: 360px) {
+      .blog-detail-layout {
+        gap: var(--space-3);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/brand-logo.png" alt="shea Logo">
+        <span>shea</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="home-2.html" class="nav-link">Home 2</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Products</a>
+        <a href="blog.html" class="nav-link active">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="cart-booking.html" class="nav-link">Cart</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL/LTR" title="Toggle RTL">
+          <i class="ph ph-translate"></i>
+        </button>
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="py-8 container" style="max-width: 1100px; margin: 0 auto;">
+      <div class="breadcrumb">
+        <a href="../index.html" class="breadcrumb-item">Home</a>
+        <span class="breadcrumb-divider">/</span>
+        <a href="blog.html" class="breadcrumb-item">Blog</a>
+        <span class="breadcrumb-divider">/</span>
+        <span class="breadcrumb-item active">Evening Rituals</span>
+      </div>
+
+      <div data-aos="fade-up">
+        <span class="badge badge-primary">Design</span>
+        <h1 class="mt-3">Sustainable Packaging in Botanical Beauty</h1>
+        <p class="mt-3" style="max-width: 700px; color: var(--text-secondary);">How thoughtful materials create a quiet luxury experience.</p>
+      </div>
+
+      <div class="blog-detail-layout" style="margin-top: var(--space-6);">
+        <article data-aos="fade-right">
+          <div class="card" style="padding: var(--space-5);">
+            <h2>Begin with a Clean Slate</h2>
+            <p class="mt-3" style="color: var(--text-secondary); line-height: 1.9;">Lift away the day with a gentle cleanser that honors your skin’s natural moisture. Look for hydrating botanicals like oat milk and chamomile, which calm redness without stripping the skin.</p>
+
+            <h3 class="mt-4">Layer with Thoughtful Ingredients</h3>
+            <p class="mt-3" style="color: var(--text-secondary);">After cleansing, apply a lightweight serum that supports the skin barrier. Ingredients such as niacinamide, squalane, and evening primrose oil work together to nourish and restore.</p>
+
+            <h3 class="mt-4">A Ritual in Four Steps</h3>
+            <ul style="margin-top: var(--space-3); list-style: disc inside; color: var(--text-secondary);">
+              <li>Cleanse with a creamy botanical wash.</li>
+              <li>Gently mist with rosewater or aloe spray.</li>
+              <li>Apply serum and targeted treatment.</li>
+              <li>Finish with a soothing moisturizer or balm.</li>
+            </ul>
+
+            <blockquote style="margin-top: var(--space-4); padding: var(--space-4); background: rgba(123, 139, 111, 0.08); border-left: 4px solid var(--color-primary); color: var(--text-secondary);">
+              “A slow evening ritual is the most luxurious way to honor your skin and prepare for rest.”
+            </blockquote>
+
+            <h3 class="mt-4">Why Slow Skincare Matters</h3>
+            <p class="mt-3" style="color: var(--text-secondary); line-height: 1.9;">Creating a calm end-of-day practice helps balance skin’s natural oils and encourages better absorption of active ingredients. Consistency is the true luxury.</p>
+
+            <div class="glass-card mt-5">
+              <h4>Ritual Essentials</h4>
+              <ul style="margin-top: var(--space-3); list-style: disc inside; color: var(--text-secondary);">
+                <li>Botanical cleanser</li>
+                <li>Hydrating face mist</li>
+                <li>Serum with adaptogens</li>
+                <li>Rich night moisturizer</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <aside class="glass-card blog-sidebar" style="padding: var(--space-5);" data-aos="fade-left">
+          <h4>More from the Journal</h4>
+          <p class="mt-3" style="color: var(--text-secondary);">Deepen your ritual with more botanical insights and seasonal routine ideas.</p>
+          <div class="mt-5">
+            <a href="blog-details.html" class="btn btn-secondary">Why Less is More</a>
+          </div>
+          <div class="mt-5">
+            <h4>Popular Stories</h4>
+            <ul style="margin-top: var(--space-3); list-style: none; padding: 0; color: var(--text-secondary);">
+              <li style="margin-bottom: var(--space-2);"><a href="blog-details.html">A Gentle Cleanse to Start the Day</a></li>
+              <li style="margin-bottom: var(--space-2);"><a href="blog-details.html">Sustainable Ingredients We Love</a></li>
+              <li><a href="blog-details.html">How to Gift a Luxury Ritual</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>  
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="../index.html" class="logo">
+            <img src="../assets/images/brand-logo.png" alt="shea Logo">
+            <span>shea</span>
+          </a>
+          <p class="mt-3">The quiet luxury of botanical skincare. Handcrafted with intention and respect for nature.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="about.html">Our Story</a>
+            <a href="services.html">Shop All</a>
+            <a href="blog.html">The Journal</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-links">
+            <a href="#"><i class="ph ph-instagram-logo"></i> Instagram</a>
+            <a href="#"><i class="ph ph-facebook-logo"></i> Facebook</a>
+            <a href="#"><i class="ph ph-pinterest-logo"></i> Pinterest</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 shea Skincare. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/components.js"></script>
+</body>
+</html>

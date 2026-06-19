@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | shea - Botanical Skincare Collection</title>
+  <link rel="icon" type="image/png" href="../assets/images/brand-logo.png">
+  
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <style>
+    /* Products Layout */
+    .products-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-8);
+      margin-bottom: var(--space-8);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 120px;
+      height: fit-content;
+    }
+
+    .filter-section {
+      background: var(--bg-surface);
+      border: none;
+      box-shadow: var(--shadow-sm);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      margin-bottom: var(--space-4);
+    }
+
+    .filter-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .filter-title {
+      font-family: var(--font-body);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+      color: var(--text-primary);
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--space-2);
+      cursor: pointer;
+    }
+
+    .filter-option:last-child {
+      margin-bottom: 0;
+    }
+
+    .filter-option input[type="checkbox"],
+    .filter-option input[type="radio"] {
+      margin-right: var(--space-2);
+      cursor: pointer;
+      accent-color: var(--color-primary);
+    }
+
+    .filter-option label {
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      transition: color var(--transition-fast);
+    }
+
+    .filter-option:hover label {
+      color: var(--text-primary);
+    }
+
+    /* Search Bar */
+    .search-input {
+      width: 100%;
+      padding: var(--space-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      margin-bottom: var(--space-4);
+      transition: all var(--transition-fast);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(74, 103, 65, 0.1);
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+
+    .product-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: none;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-1);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-primary);
+    }
+
+    .product-image-wrapper {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--bg-secondary);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.08);
+    }
+
+    .quick-view-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+      z-index: 10;
+    }
+
+    .product-card:hover .quick-view-overlay {
+      opacity: 1;
+    }
+
+    .quick-view-btn {
+      background: white;
+      color: var(--text-primary);
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      min-height: 44px;
+    }
+
+    .quick-view-btn:hover {
+      background: var(--color-primary);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* Product Info */
+    .product-info {
+      padding: var(--space-2);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .product-info-top {
+      flex-grow: 1;
+    }
+
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .product-category {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--color-primary);
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+    }
+
+    .product-description {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-1);
+      line-height: 1.4;
+    }
+
+    .product-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .add-to-cart-btn {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      border: 1px solid var(--color-border);
+      padding: 10px 24px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      width: 100%;
+      transition: all var(--transition-fast);
+    }
+
+    .add-to-cart-btn:hover {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Quick View Modal */
+    .quick-view-modal .modal-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      max-width: 900px;
+      height: auto;
+    }
+
+    .modal-product-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    }
+
+    .modal-product-info {
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      justify-content: space-between;
+    }
+
+    /* Responsive */
+    @media(max-width: 1200px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width: 1024px) {
+      .products-layout {
+        grid-template-columns: 240px 1fr;
+        gap: var(--space-4);
+      }
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width: 768px) {
+      .products-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+      }
+
+      .sidebar {
+        position: static;
+        top: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-3);
+      }
+
+      .filter-section {
+        margin-bottom: 0;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .quick-view-modal .modal-content {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-product-image {
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      }
+    }
+
+    @media(max-width: 576px) {
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-info {
+        padding: var(--space-2);
+      }
+
+      .product-title {
+        font-size: 1rem;
+      }
+
+      .product-description {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media(max-width: 360px) {
+      .products-layout {
+        gap: var(--space-3);
+      }
+
+      .filter-section {
+        padding: var(--space-2);
+      }
+
+      .product-image-wrapper {
+        aspect-ratio: 1/1;
+      }
+
+      .quick-view-btn,
+      .add-to-cart-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+    }
+
+    main {
+      padding-top: calc(var(--header-comp) + var(--space-4)) !important;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding-top: calc(var(--header-comp) + var(--space-2)) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/brand-logo.png" alt="shea Logo">
+        <span>shea</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="home-2.html" class="nav-link">Home 2</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link active">Products</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="cart-booking.html" class="nav-link nav-cart-icon" aria-label="Cart" title="Cart"><i class="ph ph-shopping-cart"></i></a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL/LTR" title="Toggle RTL">
+          <i class="ph ph-translate"></i>
+        </button>
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-8 container">
+    <!-- Page Header -->
+    <div class="text-center mb-8" data-aos="fade-up">
+      <h1 style="font-size: 3.5rem; margin-bottom: var(--space-2) ;">Botanical Collection</h1>
+      <p style="font-size: 1.1rem; color: var(--text-secondary);">Handcrafted skincare formulations designed for every skin type and concern</p>
+    </div>
+
+    <div class="products-layout">
+      <!-- Sidebar Filters -->
+      <aside class="sidebar" data-aos="fade-right">
+        <!-- Search -->
+        <div style="grid-column: 1/-1;">
+          <input type="text" class="search-input" id="searchInput" placeholder="Search products...">
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-section">
+          <div class="filter-title">Category</div>
+          <div class="filter-option">
+            <input type="checkbox" id="cat-serums">
+            <label for="cat-serums">Face Serums</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="cat-soaps">
+            <label for="cat-soaps">Handmade Soaps</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="cat-oils">
+            <label for="cat-oils">Body Oils</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="cat-masks">
+            <label for="cat-masks">Face Masks</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="cat-creams">
+            <label for="cat-creams">Facial Creams</label>
+          </div>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="filter-section">
+          <div class="filter-title">Price Range</div>
+          <div class="filter-option">
+            <input type="radio" id="price-under20" name="price">
+            <label for="price-under20">Under $20</label>
+          </div>
+          <div class="filter-option">
+            <input type="radio" id="price-20-50" name="price">
+            <label for="price-20-50">$20 - $50</label>
+          </div>
+          <div class="filter-option">
+            <input type="radio" id="price-over50" name="price">
+            <label for="price-over50">Over $50</label>
+          </div>
+        </div>
+
+        <!-- Skin Type Filter -->
+        <div class="filter-section">
+          <div class="filter-title">Skin Type</div>
+          <div class="filter-option">
+            <input type="checkbox" id="skin-dry">
+            <label for="skin-dry">Dry</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="skin-oily">
+            <label for="skin-oily">Oily</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="skin-combo">
+            <label for="skin-combo">Combination</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" id="skin-sensitive">
+            <label for="skin-sensitive">Sensitive</label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="productGrid">
+        <!-- Product 1 -->
+        <article class="product-card" data-aos="fade-up" data-category="soaps" data-price="12" data-skin-type="dry,sensitive">
+          <div class="product-image-wrapper">
+            <img src="https://plus.unsplash.com/premium_photo-1679511319180-68c56ea4fd43?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fExhdmVuZGVyJTIwU29hcHxlbnwwfHwwfHx8MA%3D%3D" alt="Lavender Dream Soap" class="product-image">
+            <div class="quick-view-overlay">
+              <button class="quick-view-btn modal-trigger" data-modal="quickViewModal1">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-category">Handmade Soap</div>
+              <h3 class="product-title">Lavender Dream Soap</h3>
+              <p class="product-description">Cold-pressed with organic lavender essential oil for a calming ritual</p>
+            </div>
+            <div class="product-footer">
+              <span class="product-price">$12.00</span>
+              <button class="add-to-cart-btn" data-product="Lavender Dream Soap" data-price="12.00">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="serums" data-price="34" data-skin-type="oily,combo">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1615396899839-c99c121888b0?auto=format&fit=crop&w=1200&q=80" alt="Citrus Glow Serum" class="product-image">
+            <div class="quick-view-overlay">
+              <button class="quick-view-btn modal-trigger" data-modal="quickViewModal2">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-category">Face Serum</div>
+              <h3 class="product-title">Citrus Glow Serum</h3>
+              <p class="product-description">Brightening serum with Vitamin C and antioxidant botanical extracts</p>
+            </div>
+            <div class="product-footer">
+              <span class="product-price">$34.00</span>
+              <button class="add-to-cart-btn" data-product="Citrus Glow Serum" data-price="34.00">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card" data-aos="fade-up" data-aos-delay="200" data-category="soaps" data-price="14" data-skin-type="sensitive">
+          <div class="product-image-wrapper">
+            <img src="https://plus.unsplash.com/premium_photo-1677776518705-70b21cbc4d47?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Oatmeal & Honey Bar" class="product-image">
+            <div class="quick-view-overlay">
+              <button class="quick-view-btn modal-trigger" data-modal="quickViewModal3">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-category">Handmade Soap</div>
+              <h3 class="product-title">Oatmeal & Honey Bar</h3>
+              <p class="product-description">Gentle exfoliating soap perfect for sensitive skin</p>
+            </div>
+            <div class="product-footer">
+              <span class="product-price">$14.00</span>
+              <button class="add-to-cart-btn" data-product="Oatmeal & Honey Bar" data-price="14.00">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 4 -->
+        <article class="product-card" data-aos="fade-up" data-aos-delay="300" data-category="creams" data-price="28" data-skin-type="dry,combo">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&q=80&w=600&h=800" alt="Rose Hydration Cream" class="product-image">
+            <div class="quick-view-overlay">
+              <button class="quick-view-btn modal-trigger" data-modal="quickViewModal4">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-category">Facial Cream</div>
+              <h3 class="product-title">Rose Hydration Cream</h3>
+              <p class="product-description">Luxurious moisturizer with rose hip oil and hyaluronic acid</p>
+            </div>
+            <div class="product-footer">
+              <span class="product-price">$28.00</span>
+              <button class="add-to-cart-btn" data-product="Rose Hydration Cream" data-price="28.00">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 5 -->
+        <article class="product-card" data-aos="fade-up" data-aos-delay="400" data-category="masks" data-price="22" data-skin-type="oily">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80" alt="Charcoal Detox Mask" class="product-image">
+            <div class="quick-view-overlay">
+              <button class="quick-view-btn modal-trigger" data-modal="quickViewModal5">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-category">Face Mask</div>
+              <h3 class="product-title">Charcoal Detox Mask</h3>
+              <p class="product-description">Deep cleansing mask with activated charcoal and clay</p>
+            </div>
+            <div class="product-footer">
+              <span class="product-price">$22.00</span>
+              <button class="add-to-cart-btn" data-product="Charcoal Detox Mask" data-price="22.00">Add</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 6 -->
+        <article class="product-card" data-aos="fade-up" data-aos-delay="500" data-category="oils" data-price="32" data-skin-type="dry,sensitive,combo">
+          <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=1200&q=80" alt="Golden Elixir Body Oil" class="product-image">
+            <div class="quick-view-overlay">
+              <button class="quick-view-btn modal-trigger" data-modal="quickViewModal6">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-category">Body Oil</div>
+              <h3 class="product-title">Golden Elixir Body Oil</h3>
+              <p class="product-description">Nourishing oil blend with jasmine, argan, and jojoba</p>
+            </div>
+            <div class="product-footer">
+              <span class="product-price">$32.00</span>
+              <button class="add-to-cart-btn" data-product="Golden Elixir Body Oil" data-price="32.00">Add</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Pagination or Load More -->
+    <div class="text-center mt-8" data-aos="fade-up">
+      <button class="btn btn-secondary" style="margin-right: var(--space-2);"><i class="ph ph-arrow-left" aria-hidden="true"></i> Previous</button>
+      <button class="btn btn-primary">Next <i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+    </div>
+  </main>
+
+  <!-- Quick View Modals -->
+  <div id="quickViewModal1" class="modal quick-view-modal">
+    <div class="modal-content">
+      <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=600&h=800" alt="Lavender Dream Soap" class="modal-product-image">
+      <div class="modal-product-info">
+        <div>
+          <button class="modal-close"><i class="ph ph-x"></i></button>
+          <div class="product-category">Handmade Soap</div>
+          <h2 style="margin-top: var(--space-2);">Lavender Dream Soap</h2>
+          <p style="color: var(--text-secondary); margin: var(--space-2) 0;">Cold-pressed with organic lavender essential oil for a calming ritual. Perfect for winding down your evening.</p>
+          <div class="stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">42 reviews</p>
+        </div>
+        <div>
+          <p style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-3);">$12.00</p>
+          <a href="service-details.html" class="btn btn-secondary" style="width: 100%; text-align: center;">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quickViewModal2" class="modal quick-view-modal">
+    <div class="modal-content">
+      <img src="https://images.unsplash.com/photo-1615396899839-c99c121888b0?auto=format&fit=crop&w=1200&q=80" alt="Citrus Glow Serum" class="modal-product-image">
+      <div class="modal-product-info">
+        <div>
+          <button class="modal-close"><i class="ph ph-x"></i></button>
+          <div class="product-category">Face Serum</div>
+          <h2 style="margin-top: var(--space-2);">Citrus Glow Serum</h2>
+          <p style="color: var(--text-secondary); margin: var(--space-2) 0;">Brightening serum with Vitamin C and antioxidant botanical extracts. Visibly radiant skin in 2 weeks.</p>
+          <div class="stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">78 reviews</p>
+        </div>
+        <div>
+          <p style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-3);">$34.00</p>
+          <a href="service-details.html" class="btn btn-secondary" style="width: 100%; text-align: center;">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quickViewModal3" class="modal quick-view-modal">
+    <div class="modal-content">
+      <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=600&h=800" alt="Oatmeal & Honey Bar" class="modal-product-image">
+      <div class="modal-product-info">
+        <div>
+          <button class="modal-close"><i class="ph ph-x"></i></button>
+          <div class="product-category">Handmade Soap</div>
+          <h2 style="margin-top: var(--space-2);">Oatmeal & Honey Bar</h2>
+          <p style="color: var(--text-secondary); margin: var(--space-2) 0;">Gentle exfoliating soap perfect for sensitive skin. Soothe and nourish with every wash.</p>
+          <div class="stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star"></i></div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">36 reviews</p>
+        </div>
+        <div>
+          <p style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-3);">$14.00</p>
+          <a href="service-details.html" class="btn btn-secondary" style="width: 100%; text-align: center;">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quickViewModal4" class="modal quick-view-modal">
+    <div class="modal-content">
+      <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&q=80&w=600&h=800" alt="Rose Hydration Cream" class="modal-product-image">
+      <div class="modal-product-info">
+        <div>
+          <button class="modal-close"><i class="ph ph-x"></i></button>
+          <div class="product-category">Facial Cream</div>
+          <h2 style="margin-top: var(--space-2);">Rose Hydration Cream</h2>
+          <p style="color: var(--text-secondary); margin: var(--space-2) 0;">Luxurious moisturizer with rose hip oil and hyaluronic acid. Deeply hydrate and rejuvenate your skin.</p>
+          <div class="stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">64 reviews</p>
+        </div>
+        <div>
+          <p style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-3);">$28.00</p>
+          <a href="service-details.html" class="btn btn-secondary" style="width: 100%; text-align: center;">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quickViewModal5" class="modal quick-view-modal">
+    <div class="modal-content">
+      <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=80" alt="Charcoal Detox Mask" class="modal-product-image">
+      <div class="modal-product-info">
+        <div>
+          <button class="modal-close"><i class="ph ph-x"></i></button>
+          <div class="product-category">Face Mask</div>
+          <h2 style="margin-top: var(--space-2);">Charcoal Detox Mask</h2>
+          <p style="color: var(--text-secondary); margin: var(--space-2) 0;">Deep cleansing mask with activated charcoal and clay. Purify and refine your complexion weekly.</p>
+          <div class="stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">51 reviews</p>
+        </div>
+        <div>
+          <p style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-3);">$22.00</p>
+          <a href="service-details.html" class="btn btn-secondary" style="width: 100%; text-align: center;">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="quickViewModal6" class="modal quick-view-modal">
+    <div class="modal-content">
+      <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=1200&q=80" alt="Golden Elixir Body Oil" class="modal-product-image">
+      <div class="modal-product-info">
+        <div>
+          <button class="modal-close"><i class="ph ph-x"></i></button>
+          <div class="product-category">Body Oil</div>
+          <h2 style="margin-top: var(--space-2);">Golden Elixir Body Oil</h2>
+          <p style="color: var(--text-secondary); margin: var(--space-2) 0;">Nourishing oil blend with jasmine, argan, and jojoba. A luxurious ritual for your entire body.</p>
+          <div class="stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">29 reviews</p>
+        </div>
+        <div>
+          <p style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: var(--space-3);">$32.00</p>
+          <a href="service-details.html" class="btn btn-secondary" style="width: 100%; text-align: center;">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="../index.html" class="logo">
+            <img src="../assets/images/brand-logo.png" alt="shea Logo">
+            <span>shea</span>
+          </a>
+          <p class="mt-3">The quiet luxury of botanical skincare. Handcrafted with intention and respect for nature.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="about.html">Our Story</a>
+            <a href="services.html">Shop All</a>
+            <a href="blog.html">The Journal</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-links">
+            <a href="#"><i class="ph ph-instagram-logo"></i> Instagram</a>
+            <a href="#"><i class="ph ph-facebook-logo"></i> Facebook</a>
+            <a href="#"><i class="ph ph-pinterest-logo"></i> Pinterest</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 shea Skincare. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+  <script>
+    // Product filtering and search functionality
+    class ProductFilter {
+      constructor() {
+        this.products = document.querySelectorAll('.product-card');
+        this.searchInput = document.getElementById('searchInput');
+        this.categoryFilters = document.querySelectorAll('input[id^="cat-"]');
+        this.priceFilters = document.querySelectorAll('input[name="price"]');
+        this.skinTypeFilters = document.querySelectorAll('input[id^="skin-"]');
+        this.init();
+      }
+
+      init() {
+        // Filter event listeners
+        this.searchInput.addEventListener('input', () => this.applyFilters());
+        this.categoryFilters.forEach(filter => filter.addEventListener('change', () => this.applyFilters()));
+        this.priceFilters.forEach(filter => filter.addEventListener('change', () => this.applyFilters()));
+        this.skinTypeFilters.forEach(filter => filter.addEventListener('change', () => this.applyFilters()));
+      }
+
+      applyFilters() {
+        const searchTerm = this.searchInput.value.toLowerCase();
+        const selectedCategories = Array.from(this.categoryFilters).filter(f => f.checked).map(f => f.id.replace('cat-', ''));
+        const selectedPrice = Array.from(this.priceFilters).find(f => f.checked)?.id;
+        const selectedSkinTypes = Array.from(this.skinTypeFilters).filter(f => f.checked).map(f => f.id.replace('skin-', ''));
+
+        this.products.forEach(product => {
+          let show = true;
+
+          // Search filter
+          if (searchTerm) {
+            const title = product.querySelector('.product-title').textContent.toLowerCase();
+            const desc = product.querySelector('.product-description').textContent.toLowerCase();
+            show = title.includes(searchTerm) || desc.includes(searchTerm);
+          }
+
+          // Category filter
+          if (show && selectedCategories.length > 0) {
+            const productCategory = product.dataset.category;
+            show = selectedCategories.includes(productCategory);
+          }
+
+          // Price filter
+          if (show && selectedPrice) {
+            const productPrice = parseInt(product.dataset.price);
+            if (selectedPrice === 'price-under20') show = productPrice < 20;
+            else if (selectedPrice === 'price-20-50') show = productPrice >= 20 && productPrice <= 50;
+            else if (selectedPrice === 'price-over50') show = productPrice > 50;
+          }
+
+          // Skin type filter
+          if (show && selectedSkinTypes.length > 0) {
+            const productSkinTypes = product.dataset.skinType.split(',');
+            show = selectedSkinTypes.some(type => productSkinTypes.includes(type));
+          }
+
+          // Show or hide product
+          product.style.display = show ? 'flex' : 'none';
+          if (show) {
+            product.style.animation = 'fadeIn 0.3s ease-in';
+          }
+        });
+      }
+
+    }
+
+    // Add fade animations
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideIn {
+        from { transform: translateX(400px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(400px); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Initialize filter on page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        new ProductFilter();
+      });
+    } else {
+      new ProductFilter();
+    }
+  </script>
+</body>
+</html>

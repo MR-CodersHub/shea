@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | shea</title>
+  <link rel="icon" type="image/png" href="../assets/images/brand-logo.png">
+  
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <style>
+    .contact-grid {
+      align-items: start;
+    }
+    
+    @media (max-width: 992px) {
+      .contact-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/brand-logo.png" alt="shea Logo">
+        <span>shea</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="home-2.html" class="nav-link">Home 2</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Products</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+        <a href="cart-booking.html" class="nav-link nav-cart-icon" aria-label="Cart" title="Cart"><i class="ph ph-shopping-cart"></i></a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL/LTR" title="Toggle RTL">
+          <i class="ph ph-translate"></i>
+        </button>
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="py-8 container">
+      <div class="grid grid-2 contact-grid" style="gap: var(--space-5);">
+        <div data-aos="fade-right">
+          <span class="badge badge-primary">Contact</span>
+          <h1 class="mt-3">Let us guide your daily botanical ritual.</h1>
+          <p class="mt-3" style="max-width: 520px; color: var(--text-secondary);">Whether you want help selecting the perfect serum, need packaging guidance, or have a product question, our team is ready to respond with thoughtful recommendations.</p>
+
+          <div class="grid grid-2 mt-5" style="gap: var(--space-3);">
+            <div class="glass-card">
+              <h4><i class="ph ph-map-pin"></i> Visit</h4>
+              <p class="mt-2">224 Herbarium Avenue<br>Greenway, New York</p>
+            </div>
+            <div class="glass-card">
+              <h4><i class="ph ph-envelope"></i> Email</h4>
+              <p class="mt-2">hello@shea.com</p>
+            </div>
+            <div class="glass-card">
+              <h4><i class="ph ph-phone"></i> Call</h4>
+              <p class="mt-2">+1 555 234 7890</p>
+            </div>
+            <div class="glass-card">
+              <h4><i class="ph ph-clock"></i> Hours</h4>
+              <p class="mt-2">Mon – Fri · 9am – 6pm EST</p>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-left">
+          <div class="card" style="padding: var(--space-5);">
+            <h2>Send a Message</h2>
+            <p class="mt-2" style="color: var(--text-secondary);">Share your skin goals and we will respond within one business day.</p>
+            <form class="needs-validation mt-4" novalidate>
+              <div class="form-group">
+                <label class="form-label">Your Name</label>
+                <input type="text" class="form-control" placeholder="Emma Laurent" required>
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="hello@shea.com" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" rows="6" placeholder="Tell us what you're looking for..." required></textarea>
+                <div class="invalid-feedback">Please share a few details.</div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100" style="width: 100%;">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 container">
+      <div class="glass-card" data-aos="fade-up">
+        <h2>Find Us</h2>
+        <p class="mt-2" style="color: var(--text-secondary);">Visit our atelier for a private consultation or select pickup.</p>
+        <iframe
+          src="https://maps.google.com/maps?q=224%20Herbarium%20Avenue%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          style="width: 100%; min-height: 360px; border: 0; border-radius: var(--radius-lg); margin-top: var(--space-4);"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+    <section class="py-8 container">
+      <div class="text-center">
+        <span class="badge badge-primary">FAQ</span>
+        <h2 class="mt-3">Quick answers before you reach out</h2>
+        <p class="mt-2" style="max-width: 620px; margin: 0 auto; color: var(--text-secondary);">Common questions about orders, shipping, and how to build a ritual that feels luxurious.</p>
+      </div>
+
+      <div class="accordion mt-5">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>How long does shipping take?</span>
+            <i class="ph ph-plus icon"></i>
+          </button>
+          <div class="accordion-body">
+            <p>Standard shipping arrives in 3–5 business days within the United States. Expedited options are available at checkout for urgent orders.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Do you offer gift packaging?</span>
+            <i class="ph ph-plus icon"></i>
+          </button>
+          <div class="accordion-body">
+            <p>Yes. Select our signature gift wrap at checkout, and we will include a handwritten note if requested.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>Can I request a custom routine?</span>
+            <i class="ph ph-plus icon"></i>
+          </button>
+          <div class="accordion-body">
+            <p>Absolutely. Share your skin priorities in the message field and our ritual advisors will recommend the best products.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>What is your return policy?</span>
+            <i class="ph ph-plus icon"></i>
+          </button>
+          <div class="accordion-body">
+            <p>We offer returns and exchanges within 14 days of delivery for unopened products. Please contact us to begin a return.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="../index.html" class="logo">
+            <img src="../assets/images/brand-logo.png" alt="shea Logo">
+            <span>shea</span>
+          </a>
+          <p class="mt-3">The quiet luxury of botanical skincare. Handcrafted with intention and respect for nature.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="about.html">Our Story</a>
+            <a href="services.html">Shop All</a>
+            <a href="blog.html">The Journal</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-links">
+            <a href="#"><i class="ph ph-instagram-logo"></i> Instagram</a>
+            <a href="#"><i class="ph ph-facebook-logo"></i> Facebook</a>
+            <a href="#"><i class="ph ph-pinterest-logo"></i> Pinterest</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 shea Skincare. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/components.js"></script>
+</body>
+</html>

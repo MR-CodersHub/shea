@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shea | Artisanal Skincare & Handmade Soaps</title>
+  <link rel="icon" type="image/png" href="./assets/images/brand-logo.png">
+  <meta name="description"
+    content="Discover premium artisanal handmade soaps and transparent natural skincare products. Elevate your daily routine with shea.">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+
+  <!-- AOS CSS for Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* Luxury Specific Overrides for Home Page */
+    .hero {
+      padding-top: calc(var(--header-comp) + var(--space-4));
+      padding-bottom: var(--space-8);
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: var(--space-4);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      padding-left: var(--space-4);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: var(--space-4);
+      border-radius: var(--radius-lg);
+    }
+
+    [data-theme="dark"] .glass-card {
+      background: rgba(42, 45, 41, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .ingredient-row:nth-child(even) {
+      direction: rtl;
+    }
+
+    .ingredient-row:nth-child(even)>* {
+      direction: ltr;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .benefit-card {
+      padding: var(--space-3);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-10px);
+    }
+
+    /* --- Laptop: 1200px --- */
+    @media (max-width: 1200px) {
+      .hero-content h1 {
+        font-size: 3.5rem;
+      }
+    }
+
+    /* --- Tablet Landscape: 1024px --- */
+    @media (max-width: 1024px) {
+      .hero {
+        min-height: auto;
+        gap: var(--space-5);
+      }
+
+      .hero-content h1 {
+        font-size: 3.2rem;
+      }
+
+      .hero-image {
+        max-height: 600px;
+      }
+
+      .benefit-card {
+        padding: var(--space-2);
+      }
+
+      .glass-card {
+        padding: var(--space-3);
+      }
+    }
+
+    /* --- Tablet Portrait: 992px --- */
+    @media (max-width: 992px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: var(--header-comp);
+        padding-bottom: var(--space-6);
+        gap: var(--space-4);
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-cta {
+        justify-content: center;
+      }
+
+      .hero-image {
+        max-height: 450px;
+      }
+
+      .benefit-card {
+        padding: var(--space-2);
+      }
+
+      .glass-card {
+        padding: var(--space-3);
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .skincare-ritual .grid-3 .grid-3 {
+        gap: var(--space-4);
+      }
+    }
+
+    /* --- Small Tablet: 768px --- */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero {
+        gap: var(--space-3);
+      }
+
+      .hero-image {
+        max-height: 350px;
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-3);
+      }
+
+      .benefit-card {
+        padding: var(--space-3);
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-3);
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-3);
+      }
+
+      .ingredient-row {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--space-4);
+      }
+
+      .ingredient-row:nth-child(even) {
+        direction: ltr;
+      }
+
+      .ingredient-row:nth-child(even) > * {
+        direction: ltr;
+      }
+
+      .ingredient-row img {
+        width: 100%;
+        max-height: 350px;
+        object-fit: cover;
+      }
+
+      .ingredient-row > div[data-aos] {
+        padding: var(--space-2) var(--space-2) !important;
+      }
+
+      .ingredient-row ul {
+        padding-left: var(--space-4) !important;
+      }
+
+      .artisan-section .grid-2 {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--space-6);
+      }
+
+      .artisan-section ul {
+        align-items: center;
+      }
+
+      .artisan-section ul li {
+        justify-content: center;
+      }
+
+      .artisan-badge {
+        bottom: -10px !important;
+        left: 10px !important;
+        padding: var(--space-2) !important;
+      }
+
+      .artisan-badge p:first-child {
+        font-size: 1.2rem !important;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-form input {
+        width: 100%;
+      }
+
+      .newsletter-form button {
+        position: static !important;
+        width: 100%;
+        margin-top: var(--space-2);
+        padding: 16px 24px !important;
+      }
+
+      .glass-card {
+        padding: var(--space-3);
+      }
+    }
+
+    /* --- Mobile: 640px --- */
+    @media (max-width: 640px) {
+      .benefits-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        max-height: 300px;
+      }
+
+      .benefit-card {
+        padding: var(--space-3);
+      }
+
+      .glass-card {
+        padding: var(--space-3);
+      }
+    }
+
+    /* --- Small Mobile: 480px --- */
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-image {
+        max-height: 260px;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        width: 100%;
+        align-items: stretch;
+        justify-content: center;
+        gap: var(--space-2);
+      }
+
+      .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+      }
+
+      .benefit-card {
+        padding: var(--space-3);
+      }
+
+      .skincare-ritual .grid-3 {
+        gap: var(--space-5);
+      }
+
+      .ingredient-row img {
+        max-height: 260px;
+      }
+
+      .ingredient-row > div[data-aos] {
+        padding: var(--space-2) !important;
+      }
+
+      .ingredient-row ul {
+        padding-left: var(--space-3) !important;
+      }
+
+      .glass-card {
+        padding: var(--space-3);
+      }
+
+      .newsletter h2 {
+        font-size: 2rem !important;
+      }
+
+      .newsletter-form {
+        padding: 0 var(--space-2);
+      }
+
+      .artisan-section .container {
+        padding: 0 var(--space-3);
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+
+      .newsletter-form .form-control {
+        padding: 14px 20px;
+        text-align: center;
+      }
+
+      .newsletter-form button {
+        position: static !important;
+        width: 100%;
+        padding: 14px 24px !important;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero-content h1 {
+        font-size: 1.8rem !important;
+      }
+
+      .hero-content p {
+        font-size: 1rem !important;
+      }
+
+      .benefits-grid {
+        gap: var(--space-2);
+      }
+
+      .benefit-card h4 {
+        font-size: 1.1rem;
+      }
+
+      .ingredient-row > div[data-aos] {
+        padding: var(--space-1) !important;
+      }
+
+      .ingredient-row img {
+        max-height: 200px;
+      }
+
+      .glass-card {
+        padding: var(--space-2);
+      }
+
+      .glass-card p {
+        font-size: 0.95rem !important;
+      }
+
+      .newsletter h2 {
+        font-size: 1.6rem !important;
+      }
+
+      .newsletter-form {
+        padding: 0;
+      }
+
+      .artisan-badge {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        margin-top: var(--space-2);
+        display: inline-block;
+        width: auto;
+      }
+
+      .artisan-section .container {
+        padding: 0 var(--space-2);
+      }
+    }
+  </style>
+</head>
+
+<body class="is-home">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img src="assets/images/brand-logo.png" alt="shea Logo">
+        <span>shea</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="pages/home-2.html" class="nav-link">Home 2</a>
+        <a href="pages/about.html" class="nav-link">About</a>
+        <a href="pages/services.html" class="nav-link">Products</a>
+        <a href="pages/blog.html" class="nav-link">Blog</a>
+        <a href="pages/contact.html" class="nav-link">Contact</a>
+        <a href="pages/cart-booking.html" class="nav-link nav-cart-icon" aria-label="Cart" title="Cart"><i class="ph ph-shopping-cart"></i></a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <i class="ph ph-moon"></i>
+        </button>
+        <button class="icon-btn" id="rtlToggle" aria-label="Toggle RTL/LTR" title="Toggle RTL">
+          <i class="ph ph-translate"></i>
+        </button>
+        <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Luxurious Split-Layout Hero Section -->
+    <section class="hero container">
+      <div class="hero-content" data-aos="fade-right" data-aos-delay="100">
+        <h1>The Quiet Luxury of Botanical Rituals.</h1>
+        <p style="font-size: 1.25rem; max-width: 500px; color: var(--text-secondary);">Immerse yourself in our
+          collection of artisanal, handmade soaps and botanical skincare. Crafted to elevate your daily routine into a
+          moment of pure serenity.</p>
+        <div class="hero-cta mt-4">
+          <a href="pages/services.html" class="btn btn-primary">Shop Collection</a>
+          <a href="#ingredients" class="btn btn-secondary">Discover Ingredients</a>
+        </div>
+      </div>
+      <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&q=80&w=1000&h=1200"
+          alt="Luxurious Skincare Products" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+    </section>
+
+    <!-- Featured Benefits Section -->
+    <section class="py-8" style="background-color: var(--bg-secondary);">
+      <div class="container grid grid-4 benefits-grid">
+        <div data-aos="fade-up" data-aos-delay="100" class="text-center benefit-card">
+          <i class="ph-light ph-leaf" style="font-size: 3rem; color: var(--color-primary);"></i>
+          <h4 class="mt-3">Organic Ingredients</h4>
+          <p style="font-size: 0.9rem;">Sourced directly from nature, ensuring pure, unadulterated botanical benefits
+            for your skin.</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200" class="text-center benefit-card">
+          <i class="ph-light ph-hands-clapping" style="font-size: 3rem; color: var(--color-primary);"></i>
+          <h4 class="mt-3">Handmade Process</h4>
+          <p style="font-size: 0.9rem;">Crafted in small batches by artisans who pour passion into every bottle and bar.
+          </p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="300" class="text-center benefit-card">
+          <i class="ph-light ph-rabbit" style="font-size: 3rem; color: var(--color-primary);"></i>
+          <h4 class="mt-3">Cruelty Free</h4>
+          <p style="font-size: 0.9rem;">Ethically formulated without animal testing, because beauty should never cause
+            harm.</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="400" class="text-center benefit-card">
+          <i class="ph-light ph-recycle" style="font-size: 3rem; color: var(--color-primary);"></i>
+          <h4 class="mt-3">Sustainable Packaging</h4>
+          <p style="font-size: 0.9rem;">Housed in recyclable glass and minimal materials to protect the earth we draw
+            from.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Best Sellers Section -->
+    <section class="py-8 container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2>Best Sellers</h2>
+<p style="font-family: var(--font-heading); color: var(--text-secondary);">The community's
+          most loved rituals.</p>
+      </div>
+
+      <!-- Best Sellers Section with extra gap -->
+      <div class="grid grid-3" style="gap: var(--space-6);">
+        <!-- Product 1 -->
+        <article class="card" data-aos="fade-up" data-aos-delay="100"
+          style="border: none; box-shadow: var(--shadow-sm); border-radius: var(--radius-lg);">
+          <div class="card-img-wrapper"
+            style="border-radius: var(--radius-lg) var(--radius-lg) 0 0; aspect-ratio: 1/1;">
+            <img src="https://plus.unsplash.com/premium_photo-1679511318338-a32edc0db0bb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8TGF2ZW5kZXIlMjBTb2FwfGVufDB8fDB8fHww"
+              alt="Lavender Dream Soap" class="card-img" style="transition: transform 0.5s ease;">
+          </div>
+          <div class="card-content text-center">
+            <h3 style="font-size: 1.25rem;">Lavender Dream Soap</h3>
+            <p style="color: var(--color-primary); font-weight: 600;">$12.00</p>
+            <div style="display: flex; justify-content: center; gap: 4px; color: #F59E0B; margin: 8px 0;">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+            </div>
+            <button class="btn btn-secondary mt-2 w-100" data-add-to-cart="true" data-product="Lavender Dream Soap"
+              data-price="12.00" style="width: 100%;">Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="card" data-aos="fade-up" data-aos-delay="200"
+          style="border: none; box-shadow: var(--shadow-sm); border-radius: var(--radius-lg);">
+          <div class="card-img-wrapper"
+            style="border-radius: var(--radius-lg) var(--radius-lg) 0 0; aspect-ratio: 1/1;">
+            <img src="https://images.unsplash.com/photo-1665763630810-e6251bdd392d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHNlcnVtfGVufDB8fDB8fHww"
+              alt="Citrus Glow Serum" class="card-img" style="transition: transform 0.5s ease;">
+          </div>
+          <div class="card-content text-center">
+            <h3 style="font-size: 1.25rem;">Citrus Glow Serum</h3>
+            <p style="color: var(--color-primary); font-weight: 600;">$34.00</p>
+            <div style="display: flex; justify-content: center; gap: 4px; color: #F59E0B; margin: 8px 0;">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                class="ph-fill ph-star"></i><i class="ph-fill ph-star-half"></i>
+            </div>
+            <button class="btn btn-secondary mt-2 w-100" data-add-to-cart="true" data-product="Citrus Glow Serum"
+              data-price="34.00" style="width: 100%;">Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="card" data-aos="fade-up" data-aos-delay="300"
+          style="border: none; box-shadow: var(--shadow-sm); border-radius: var(--radius-lg);">
+          <div class="card-img-wrapper"
+            style="border-radius: var(--radius-lg) var(--radius-lg) 0 0; aspect-ratio: 1/1;">
+            <img
+              src="https://blog.kamaayurveda.in/wp-content/uploads/2023/08/KAMA_Aug2023_Blog_InternalImage2_10-Best-Homemade-Oatmeal-Face-Packs-For-Glowing-Skin_600X600px.jpg"
+              alt="Oatmeal & Honey Bar" class="card-img" style="transition: transform 0.5s ease;">
+          </div>
+          <div class="card-content text-center">
+            <h3 style="font-size: 1.25rem;">Oatmeal & Honey Bar</h3>
+            <p style="color: var(--color-primary); font-weight: 600;">$14.00</p>
+            <div style="display: flex; justify-content: center; gap: 4px; color: #F59E0B; margin: 8px 0;">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+            </div>
+            <button class="btn btn-secondary mt-2 w-100" data-add-to-cart="true" data-product="Oatmeal & Honey Bar"
+              data-price="14.00" style="width: 100%;">Add to Cart</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- The Skincare Ritual Section -->
+    <section class="py-8 container skincare-ritual">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2>The Skincare Ritual</h2>
+        <p style="font-family: var(--font-heading); color: var(--text-secondary);">Three steps to radiant skin.</p>
+      </div>
+      <div class="grid grid-3">
+        <!-- Step 1 -->
+        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3); color: var(--color-primary);">
+            <i class="ph-light ph-drop" style="font-size: 2.5rem;"></i>
+          </div>
+          <h3 style="margin-bottom: var(--space-1);">1. Cleanse</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Purify your skin with our artisanal handmade soaps to remove impurities without stripping natural oils.</p>
+        </div>
+        <!-- Step 2 -->
+        <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3); color: var(--color-primary);">
+            <i class="ph-light ph-sparkle" style="font-size: 2.5rem;"></i>
+          </div>
+          <h3 style="margin-bottom: var(--space-1);">2. Treat</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Target specific concerns with our botanical serums, formulated with concentrated plant extracts.</p>
+        </div>
+        <!-- Step 3 -->
+        <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-3); color: var(--color-primary);">
+            <i class="ph-light ph-sun" style="font-size: 2.5rem;"></i>
+          </div>
+          <h3 style="margin-bottom: var(--space-1);">3. Nourish</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Lock in moisture and protect your skin barrier with our rich, deeply hydrating botanical creams.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ingredients Showcase Section -->
+    <section id="ingredients" class="py-8" style="background-color: var(--bg-secondary);">
+      <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2>Pure Ingredients</h2>
+          <p style="font-family: var(--font-heading); color: var(--text-secondary);">The essence of our formulations.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+          <!-- Ingredient 1 -->
+          <div class="grid grid-2 ingredient-row" style="align-items: center;">
+            <div data-aos="fade-right">
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80"
+                alt="Lavender" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+            </div>
+            <div data-aos="fade-left" style="padding: var(--space-4);">
+              <h3>Lavender</h3>
+              <p class="mt-2">Renowned for its calming scent and anti-inflammatory properties. Lavender essential oil
+                helps reduce redness, soothe blotchy skin, and promote a peaceful state of mind.</p>
+              <ul class="mt-3"
+                style="list-style-type: disc; margin-left: var(--space-3); color: var(--text-secondary);">
+                <li>Soothes irritation</li>
+                <li>Promotes relaxation</li>
+                <li>Antibacterial properties</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Ingredient 2 -->
+          <div class="grid grid-2 ingredient-row" style="align-items: center;">
+            <div data-aos="fade-left">
+              <img
+                src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=800&h=600"
+                alt="Shea Butter" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+            </div>
+            <div data-aos="fade-right" style="padding: var(--space-4);">
+              <h3>Shea Butter</h3>
+              <p class="mt-2">An exceptional moisturizer rich in vitamins A and E. Shea butter deeply penetrates the
+                skin to restore elasticity and provide a protective barrier against harsh elements.</p>
+              <ul class="mt-3"
+                style="list-style-type: disc; margin-left: var(--space-3); color: var(--text-secondary);">
+                <li>Deeply hydrating</li>
+                <li>Boosts collagen production</li>
+                <li>Reduces stretch marks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Artisan Process Section -->
+    <section class="py-8 artisan-section" style="background-color: var(--color-primary); color: white;">
+      <div class="container grid grid-2" style="align-items: center;">
+        <div data-aos="fade-right">
+          <h2 style="color: white; margin-bottom: var(--space-2);">The Artisan Process</h2>
+          <p style="margin-bottom: var(--space-3); font-size: 1.1rem; opacity: 0.9; color: white;">Every product is carefully handcrafted in small batches to ensure the highest quality and freshness. We believe in the slow art of skincare, taking the time to source ethical ingredients and formulate them with intention.</p>
+          <ul style="list-style-type: none; margin-bottom: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); padding: 0;">
+            <li style="display: flex; align-items: center; gap: var(--space-2); color: white;"><i class="ph-fill ph-check-circle" style="color: #A3E635; font-size: 1.25rem;"></i> Cold-pressed botanical oils</li>
+            <li style="display: flex; align-items: center; gap: var(--space-2); color: white;"><i class="ph-fill ph-check-circle" style="color: #A3E635; font-size: 1.25rem;"></i> Cured for 4-6 weeks for optimal hardness</li>
+            <li style="display: flex; align-items: center; gap: var(--space-2); color: white;"><i class="ph-fill ph-check-circle" style="color: #A3E635; font-size: 1.25rem;"></i> Free from synthetic fragrances & dyes</li>
+          </ul>
+          <a href="pages/about.html" class="btn" style="background: white; color: var(--color-primary);">Discover Our Story</a>
+        </div>
+        <div data-aos="fade-left" style="position: relative;">
+          <img src="https://images.unsplash.com/photo-1648203276014-20f97ba1f817?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fHNraW5jYXJlfGVufDB8fDB8fHww" onerror="this.src='https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&q=80&w=800&h=600';" alt="Soap Making Process" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; object-fit: cover;">
+          <div class="artisan-badge" style="position: absolute; bottom: -20px; left: -20px; background: var(--bg-surface); padding: var(--space-3); border-radius: var(--radius-md); box-shadow: var(--shadow-md); color: var(--text-primary); border: 1px solid var(--color-border);">
+            <p style="font-weight: bold; font-size: 1.5rem; margin: 0; line-height: 1;">100%</p>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">Handmade</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section (Glassmorphism) -->
+    <section class="py-8 container" style="position: relative;">
+      <!-- Decorative background blur -->
+      <div
+        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60%; height: 60%; background: var(--color-primary); filter: blur(100px); opacity: 0.1; z-index: -1;">
+      </div>
+
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2>Botanical Stories</h2>
+        <p style="font-family: var(--font-heading); color: var(--text-secondary);">Real experiences from our community.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="glass-card" data-aos="zoom-in" data-aos-delay="100">
+          <div style="display: flex; gap: 4px; color: #F59E0B; margin-bottom: var(--space-2);">
+            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+              class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+          </div>
+          <p style="font-size: 1.125rem; font-style: italic; color: var(--text-primary);">"The quiet luxury is real.
+            Every time I use the serum, it feels like I've stepped into a high-end spa. Pure perfection."</p>
+          <div class="mt-3" style="display: flex; align-items: center; gap: var(--space-2);">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Eleanor"
+              style="width: 48px; height: 48px; border-radius: var(--radius-full);">
+            <div>
+              <h5 style="margin: 0; font-family: var(--font-body);">Eleanor V.</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card" data-aos="zoom-in" data-aos-delay="200">
+          <div style="display: flex; gap: 4px; color: #F59E0B; margin-bottom: var(--space-2);">
+            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+              class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+          </div>
+          <p style="font-size: 1.125rem; font-style: italic; color: var(--text-primary);">"I love the transparency of
+            the ingredients. My skin has never looked more radiant and naturally glowing."</p>
+          <div class="mt-3" style="display: flex; align-items: center; gap: var(--space-2);">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sophia"
+              style="width: 48px; height: 48px; border-radius: var(--radius-full);">
+            <div>
+              <h5 style="margin: 0; font-family: var(--font-body);">Sophia L.</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card" data-aos="zoom-in" data-aos-delay="300">
+          <div style="display: flex; gap: 4px; color: #F59E0B; margin-bottom: var(--space-2);">
+            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+              class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+          </div>
+          <p style="font-size: 1.125rem; font-style: italic; color: var(--text-primary);">"The packaging is exquisite,
+            and the products themselves are even better. Highly recommend the Oatmeal Honey bar."</p>
+          <div class="mt-3" style="display: flex; align-items: center; gap: var(--space-2);">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James"
+              style="width: 48px; height: 48px; border-radius: var(--radius-full);">
+            <div>
+              <h5 style="margin: 0; font-family: var(--font-body);">James T.</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-8" style="background-color: #7B8B6F; color: #FFFFFF;" data-aos="fade-in">
+      <div class="container text-center">
+        <div style="max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #FFFFFF; font-family: var(--font-heading); font-size: 3rem; margin-bottom: var(--space-2);">
+            Join the Ritual</h2>
+          <p style="color: rgba(255,255,255,0.9); font-size: 1.125rem;">Subscribe to our newsletter for exclusive
+            botanical insights, private sales, and early access to new collections.</p>
+
+          <form class="mt-4 needs-validation newsletter-form" novalidate
+            style="display: flex; max-width: 450px; margin: 0 auto; position: relative;">
+            <input type="email" class="form-control" placeholder="Your email address..." required
+              style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: var(--radius-full); padding: 16px 24px; width: 100%;">
+            <button type="submit" class="btn btn-primary"
+              style="position: absolute; right: 4px; top: 4px; bottom: 4px; border-radius: var(--radius-full); background: white; color: #7B8B6F; padding: 0 24px;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="logo">
+            <img src="assets/images/brand-logo.png" alt="shea Logo">
+            <span>shea</span>
+          </a>
+          <p class="mt-3">The quiet luxury of botanical skincare. Handcrafted with intention and respect for nature.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <div class="footer-links">
+            <a href="pages/about.html">Our Story</a>
+            <a href="pages/services.html">Shop All</a>
+            <a href="pages/blog.html">The Journal</a>
+            <a href="pages/contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="pages/faq.html">FAQ</a>
+            <a href="pages/contact.html">Contact Us</a>
+            <a href="pages/terms.html">Terms of Service</a>
+            <a href="pages/privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-links">
+            <a href="#"><i class="ph ph-instagram-logo"></i> Instagram</a>
+            <a href="#"><i class="ph ph-facebook-logo"></i> Facebook</a>
+            <a href="#"><i class="ph ph-pinterest-logo"></i> Pinterest</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 shea Skincare. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    (function() {
+      var t = setTimeout(function() {
+        if (!document.querySelector('.aos-animate')) {
+          document.querySelectorAll('[data-aos]').forEach(function(el) {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          });
+        }
+      }, 3000);
+      document.addEventListener('aos:in', function() { clearTimeout(t); });
+      document.addEventListener('aos:init', function() { clearTimeout(t); });
+    })();
+  </script>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/components.js"></script>
+</body>
+
+</html>

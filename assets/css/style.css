@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* --- Base Variables --- */
+:root {
+  /* Colors - Light Theme (Default) */
+  --bg-primary: #FDFCF8;
+  --bg-secondary: #F4F1E9;
+  --bg-surface: #FFFFFF;
+  
+  --text-primary: #2C3329;
+  --text-secondary: #5A6354;
+  --text-inverse: #FFFFFF;
+
+  --color-primary: #4A6741;
+  --color-primary-hover: #3A5233;
+  --color-secondary: #C89F74;
+  --color-accent: #E87A5D;
+  --color-border: #E2DDD0;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing (8px base) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-8: 96px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* --- Dark Theme Overrides --- */
+[data-theme="dark"] {
+  --bg-primary: #1A1C19;
+  --bg-secondary: #232622;
+  --bg-surface: #2A2D29;
+  
+  --text-primary: #E8EBE6;
+  --text-secondary: #A3A8A0;
+  --text-inverse: #1A1C19;
+
+  --color-primary: #7CA16D;
+  --color-primary-hover: #96BD86;
+  --color-secondary: #D4B390;
+  --color-accent: #EF9B85;
+  --color-border: #3A3F38;
+}
+
+/* --- Reset & Base Styles --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 3rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.4rem, 3vw, 2rem); }
+h4 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
+
+p {
+  margin-bottom: var(--space-2);
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* --- Utilities --- */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.text-center { text-align: center; }
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-5 { margin-top: var(--space-5); }
+.mb-1 { margin-bottom: var(--space-1); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-5 { margin-bottom: var(--space-5); }
+.py-5 { padding-top: var(--space-5); padding-bottom: var(--space-5); }
+.py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+
+/* --- RTL Support --- */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .text-left { text-align: right; }
+[dir="rtl"] .text-right { text-align: left; }
+
+[dir="rtl"] .accordion-header {
+  text-align: right;
+}
+
+[dir="rtl"] .modal-footer {
+  justify-content: flex-start;
+}
+
+[dir="rtl"] .quick-view-image {
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+[dir="rtl"] .divider-text::before {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .breadcrumb-divider {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .editorial-section:nth-child(even) {
+  direction: ltr;
+}
+
+[dir="rtl"] .editorial-section:nth-child(even) > * {
+  direction: rtl;
+}
+
+[dir="rtl"] .ingredient-row:nth-child(even) {
+  direction: ltr;
+}
+
+[dir="rtl"] .ingredient-row:nth-child(even) > * {
+  direction: rtl;
+}
+
+[dir="rtl"] .hero {
+  text-align: right;
+}
+
+[dir="rtl"] .footer-bottom {
+  text-align: center;
+}
+
+[dir="rtl"] .footer-links a {
+  text-align: right;
+}
+
+[dir="rtl"] .carousel-prev i,
+[dir="rtl"] .carousel-next i {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .nav-menu {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%) translateY(-10px);
+}
+
+[dir="rtl"] .nav-menu.is-open {
+  transform: translateX(50%) translateY(0);
+}
+
+[dir="rtl"] .mobile-menu-btn {
+  /* keep as-is */
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .py-8 {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  h1, .hero-content h1, .fullscreen-hero h1, .about-hero h1 {
+    font-size: clamp(2.2rem, 8vw, 3.5rem) !important;
+  }
+  h2 { font-size: clamp(1.75rem, 5vw, 2rem) !important; }
+  h3 { font-size: clamp(1.3rem, 4vw, 1.75rem) !important; }
+
+  .container {
+    padding: 0 var(--space-5);
+  }
+
+  main {
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+  main .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  footer {
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
+  }
+
+  .py-8 {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-3);
+  }
+
+  main {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  main .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  footer {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+
+  .py-8 {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 0 var(--space-2);
+  }
+
+  main {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+  main .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  footer {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+
+  .py-8 {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  h1 { font-size: clamp(1.8rem, 7vw, 2.2rem) !important; }
+  h2 { font-size: clamp(1.4rem, 5vw, 1.6rem) !important; }
+  h3 { font-size: clamp(1.2rem, 4vw, 1.3rem) !important; }
+}
